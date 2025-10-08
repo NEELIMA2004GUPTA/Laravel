@@ -72,15 +72,29 @@ Route::post('/register',[RegistrationController::class,'register']);
 //     print_r($customers->toArray());  //gives data in form of objects
 // });
 
-Route::get('/customer',[CustomerRegistration::class,'index'])->name('customer.create');
-Route::post('/customer',[CustomerRegistration::class,'store']);
-Route::get('/customer/view',[CustomerRegistration::class,'view']);
-Route::get('/customer/trash',[CustomerRegistration::class,'trash']);
-Route::put('/customer/update/{id}', [CustomerRegistration::class, 'update'])->name('customer.update');
-Route::get('/customer/delete/{id}',[CustomerRegistration::class,'delete'])->name('customer.delete');
-Route::get('/customer/force-delete/{id}',[CustomerRegistration::class,'forceDelete'])->name('customer.forceDelete');
-Route::get('/customer/restore/{id}',[CustomerRegistration::class,'restore'])->name('customer.restore');
-Route::get('/customer/edit/{id}',[CustomerRegistration::class,'edit'])->name('customer.edit');
+// Group routing 
+Route::group(['prefix'=>'customer'],function(){
+    Route::get('/',[CustomerRegistration::class,'index'])->name('customer.create');
+    Route::post('/',[CustomerRegistration::class,'store']);
+    Route::get('view',[CustomerRegistration::class,'view']);
+    Route::get('trash',[CustomerRegistration::class,'trash']);
+    Route::put('update/{id}', [CustomerRegistration::class, 'update'])->name('customer.update');
+    Route::get('delete/{id}',[CustomerRegistration::class,'delete'])->name('customer.delete');
+    Route::get('force-delete/{id}',[CustomerRegistration::class,'forceDelete'])->name('customer.forceDelete');
+    Route::get('restore/{id}',[CustomerRegistration::class,'restore'])->name('customer.restore');
+    Route::get('edit/{id}',[CustomerRegistration::class,'edit'])->name('customer.edit');
+});
+
+// individual route
+// Route::get('/customer',[CustomerRegistration::class,'index'])->name('customer.create');
+// Route::post('/customer',[CustomerRegistration::class,'store']);
+// Route::get('/customer/view',[CustomerRegistration::class,'view']);
+// Route::get('/customer/trash',[CustomerRegistration::class,'trash']);
+// Route::put('/customer/update/{id}', [CustomerRegistration::class, 'update'])->name('customer.update');
+// Route::get('/customer/delete/{id}',[CustomerRegistration::class,'delete'])->name('customer.delete');
+// Route::get('/customer/force-delete/{id}',[CustomerRegistration::class,'forceDelete'])->name('customer.forceDelete');
+// Route::get('/customer/restore/{id}',[CustomerRegistration::class,'restore'])->name('customer.restore');
+// Route::get('/customer/edit/{id}',[CustomerRegistration::class,'edit'])->name('customer.edit');
 
 Route::get('get-all-session',function(){
     $session =session()->all();
