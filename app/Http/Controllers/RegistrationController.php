@@ -8,6 +8,7 @@ class RegistrationController extends Controller
 {
     public function index(){
         return view('form');
+        
     }
 
     // ! to see data

@@ -2,6 +2,7 @@
 @push("title")
     <title>Home</title>
 @endpush
+@include('layouts.nav')
 @section('main-section')
 <!DOCTYPE html>
 <html lang="en">
