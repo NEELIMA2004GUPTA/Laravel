@@ -46,9 +46,15 @@ class CustomerRegistration extends Controller
         return redirect('/customer/view');
     }
 
-    public function view(){
-        $customers=Customers::all();
-        $data=compact('customers');
+    public function view(Request $request){
+        $search=$request['search'] ?? "";
+        if ($search != ""){
+            $customers=Customers::where('name',"LIKE","%$search%")->orwhere('email','LIKE',"%$search%")->get();
+        }
+        else{
+            $customers=Customers::paginate(10);
+        }
+        $data=compact('customers','search');
         return view('customer-view')->with($data);
     }
 

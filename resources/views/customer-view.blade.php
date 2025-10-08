@@ -11,12 +11,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
-      <div class="container">
+      <div class="container"><br><br>
+        <form action="" class="col-9">
+            <div class="form-group">
+              <input type="search" name="search" id="" class="form-control" placeholder="Search by name or email....." aria-describedby="helpId" value="{{$search}}">
+            </div>
+            <button class="btn btn-primary">Search</button>
+            <a href="{{ url('/customer/view') }}" class="btn btn-secondary">Reset</a>
+        </form>
+        <br><a href="{{route('customer.create')}}"><button>Add</button></a><br><br>
+        <a href="{{url('/customer/trash')}}"><button>Go To Trash</button></a><br>
         <table class="table">
-
-            <br><br><a href="{{route('customer.create')}}"><button>Add</button></a><br><br>
-            <a href="{{url('/customer/trash')}}"><button>Go To Trash</button></a><br><br>
-
             <thead>
                 <tr>
                     <th>Name</th>
@@ -71,6 +76,11 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="row justify-content-center mt-3">
+            <div class="col-auto">
+                {{ $customers->links()}}
+            </div>
+        </div>
       </div>
   </body>
 </html>
